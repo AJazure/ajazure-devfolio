@@ -326,9 +326,17 @@ footer a {
 📌 Estilos Experiencia
 */
 
-.hover-card:hover {
-    box-shadow: 0px 15px 30px rgba(77, 87, 222, 0.3);
-    background: #fff;
+#experience img {
+    position: relative;
+}
+
+#experience .img::before {
+    content: "";
+    left: 50%;
+    width: 4px;
+    position: absolute;
+    height: calc(100% + 140px);
+    background: wheat;
 }
 
 /*
@@ -400,4 +408,181 @@ footer a {
 
 /*
 ❌ Estilos Habilidades
+*/
+
+/*
+📌 Estilos Proyectos
+*/
+
+.cards-body {
+    background-color: rgb(141, 141, 141);
+}
+
+.special-card {
+    width: auto;
+    height: 300px;
+    position: relative;
+    background: #646464;
+    color: #252525;
+    border-radius: 4px;
+    overflow: hidden; /*mete los iconos en la card*/
+    line-height: 150%;
+    box-shadow: 0px 10px 20px rgba(80, 80, 80, 0.2);
+    transition: box-shadow .3s ease-in-out;
+}
+
+.special-card-info {
+    position: absolute; /*para ubicar el texto en relacion a la tarjeta*/
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+    /*imagen tarjeta, esta se superpone*/
+.special-card-img {
+    background: #00ff88;
+    background: linear-gradient(to top, #00ff88, #61efff);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: transform .3s ease-in-out;
+    z-index: 2;
+}
+
+    /*botones de social media*/
+.special-card .social-media{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 8rem !important;
+    display: flex;
+    justify-content:space-between;
+    width: 100%;
+    padding: 0 1rem;
+    /*transform: translate(-6em);*/
+    z-index: 3;
+}
+
+.special-card .social-media li{
+    background: #f5f5f5;
+    display: inline-flex;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+    /*iconos*/
+.special-card .social-media li svg {
+    --size: 24px; /*creo variable*/
+    width: var(--size);
+    height: var(--size);
+    fill: #252525;
+}
+
+    /*textos*/
+.special-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.special-card-description {
+    letter-spacing: 1px;
+    font-size: 0.9em;
+}
+
+    /*hovers de special card*/
+.special-card:hover {
+    box-shadow: 0px 15px 30px rgba(80, 80, 80, 0.3);
+}
+
+.special-card:hover .special-card-img {
+    transform: translateY(-8.5em);
+}
+
+.special-card:hover .social-media li {
+    transform: translateY(-5%);
+    opacity: 1;
+}
+
+.special-card:hover .social-media li:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.special-card:hover .social-media li:nth-child(2) {
+    transition-delay: .1s;
+}
+
+.special-card:hover .social-media li:nth-child(3) {
+    transition-delay: .2s;
+}
+
+/*
+❌ Estilos Proyectos
+*/
+
+/*
+📌 Estilos Footer
+*/
+
+.footer {
+    position: relative;
+    padding-top: 7.5rem;
+    padding-bottom: 6rem;
+    text-align: center;
+}
+
+
+
+/*
+❌ Estilos Footer
+*/
+
+/*
+📌 Estilos Button  Go up
+*/
+
+#btn-up {
+    display: inline-block;
+    background-color: #414141;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+        opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+}
+
+#btn-up::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+}
+
+#btn-up:hover {
+    cursor: pointer;
+    background-color: #333;
+}
+
+#btn-up:active {
+    background-color: #555;
+}
+
+#btn-up.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/*
+❌ Estilos Button Go up
 */
