@@ -232,6 +232,7 @@ links-list i{
 }
 
 footer {
+    margin-top: 20px;
     text-align: end;
     padding: 40px;
     position: absolute;
