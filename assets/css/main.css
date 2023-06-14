@@ -2,6 +2,53 @@
 📌 Estilos Generales
 */
 
+:root {
+    /* Colores */
+    /*
+        Blanco de fondo: #f7fbfe
+        Énfasis: 
+        gradient:
+        background: rgb(73,58,228);
+        background: radial-gradient(circle, rgba(73,58,228,1) 42%, rgba(126,68,248,1) 96%);
+    */
+
+    --white-background: linear-gradient(
+        305deg,
+        hsl(0deg 0% 99%) 0%,
+        hsl(206deg 14% 99%) 15%,
+        hsl(206deg 27% 99%) 22%,
+        hsl(206deg 38% 99%) 28%,
+        hsl(206deg 48% 99%) 33%,
+        hsl(206deg 57% 98%) 37%,
+        hsl(206deg 64% 98%) 42%,
+        hsl(206deg 71% 98%) 46%,
+        hsl(206deg 78% 98%) 50%,
+        hsl(206deg 56% 98%) 54%,
+        hsl(206deg 41% 97%) 58%,
+        hsl(206deg 29% 97%) 63%,
+        hsl(206deg 21% 97%) 67%,
+        hsl(206deg 14% 96%) 72%,
+        hsl(206deg 8% 96%) 78%,
+        hsl(206deg 4% 95%) 85%,
+        hsl(0deg 0% 95%) 100%
+    );
+    /*cards colors*/
+    --card-bg: rgb(33,40,66);   /*usar en background:*/
+    --card-bg-gradient: radial-gradient(circle, rgba(33,40,66,1) 0%, rgba(13,17,27,1) 100%);    /*usar en background:*/
+    /*text colors*/
+    --text-color: #ebebeb;
+    /*sombras*/
+    --shadows: -22px 12px 38px -9px rgba(159, 159, 159, 0.76);
+    --light-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1);
+    --medium-shadow: rgba(0, 0, 0, 0.35) 5px 20px 15px;
+}
+
+.add-shadow {
+    -webkit-box-shadow: var(--shadows);
+    -moz-box-shadow: var(--shadows);
+    box-shadow: var(--shadows);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,15 +57,46 @@
     list-style-type: none;
 }
 
+.glass {
+    backdrop-filter: blur(13px) saturate(179%) !important;
+    -webkit-backdrop-filter: blur(13px) saturate(179%) !important;
+    background-color: rgba(17, 25, 40, 0.35) !important;
+    border-radius: 12px !important;
+    /*border: 1px solid rgba(255, 255, 255, 0.125) !important;*/
+}
+
+p {
+	font: 400 1rem/1.625rem "Open Sans", sans-serif;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+h4 {
+    font-style: italic;
+}
+
+/*
 div {
     border: 1px solid rgb(0, 255, 60);
+    min-height: 20px;
+}
+*/
+section {
+    /*border: 1px solid rgb(255, 0, 0);*/
     min-height: 20px; /*guía de altura*/
 }
 
-section {
-    border: 1px solid rgb(255, 0, 0);
-    min-height: 20px; /*guía de altura*/
+/*
+📌 Body
+*/
+.main-body {
+    background-image: var(--white-background)
 }
+/*
+❌ Body
+*/
 
 /*
 📌 Estilos Side Menu
@@ -27,14 +105,19 @@ section {
 .sidebar-container {
     width: 220px;
     height:100vh;
-    background-color: #191e24;
+    /*revisar si puedo crear una variable que haga glass*/
+    background: var(--card-bg) !important;
+    background: var(--card-bg-gradient) !important;
+    backdrop-filter: blur(13px) saturate(179%) !important;
+    -webkit-backdrop-filter: blur(13px) saturate(179%) !important;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 2px 0 10px rgba(128, 128, 128, 0.507);
+    box-shadow: var(--medium-shadow);
     transition: 0.5s;
     z-index: 10;
-    position: absolute;
+    position: fixed;
+    left: -220px; /*inicia oculto*/
 }
 
 .toggle {
@@ -43,7 +126,8 @@ section {
     top: 10px;
     right: -37px;
     z-index: -1;
-    background-color: #191e24;
+    background: var(--card-bg) !important;
+    background: var(--card-bg-gradient) !important;
     height: 35px;
     width: 40px;
     border-radius: 0 10px 10px 0;
@@ -54,11 +138,12 @@ section {
     padding: 5px;
     flex-direction: column;
     cursor: pointer;
+    box-shadow: var(--medium-shadow);
 }
 
 .toggle-function {
     /*esto es activado ejecutando que se translade el menu*/
-    transform: translate(-220px, 0);
+    transform: translate(220px, 0);
     transition: 0.5s;
 }
 
@@ -77,11 +162,10 @@ section {
     align-items: center;
     padding: 15px 0;
     margin-bottom: 20px;
-    background-image: url('https://i.postimg.cc/7YXvc2LV/blob-scene-haikei.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    
+
 }
 
 .profile-card .title {
@@ -90,7 +174,7 @@ section {
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #191e24
+    color: #dedede
 }
 
 .profile-card .subtitle {
@@ -105,7 +189,7 @@ section {
     margin-left: 25px;
     display: block;
     font-weight: 300;
-    padding: 5px 0;
+    padding: 10px 0;
     font-size: medium;
     transition: ease-in-out 0.3s; /*tiempo en el que aparece el contenido*/
 }
@@ -126,9 +210,9 @@ links-list i{
     transition: ease-in-out 0.2s;
 }
 
-.links-list li:nth-child(5) {
+.links-list li:nth-child(2) {
     padding-top: 10px;
-    border-top: 1px rgba(128, 128, 128, 0.15) solid;
+    border-top: 1px rgba(128, 128, 128, 0.34) solid;
 }
 
 .social-media-icons {
@@ -164,18 +248,59 @@ footer a {
 ❌ Side Menu
 */
 
+/*
+📌 Estilos Tipeo Portada
+*/
+
+.container-typed p {
+    font-size: 3rem;
+    padding:0.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container-typed p span.typed-text {
+    font-weight: normal;
+    color: #dd7732;
+}
+
+.container-typed p span.cursor {
+    display: inline-block;
+    background-color: #ccc;
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 1s infinite;
+}
+
+.container-typed p span.cursor.typing {
+    animation: none;
+}
+@keyframes blink {
+    0%  { background-color: #f7fbfe; }
+    49% { background-color: #f7fbfe; }
+    50% { background-color: transparent; }
+    99% { background-color: transparent; }
+    100%  { background-color: #f7fbfe; }
+}
+
+/*
+❌ Estilos Tipeo Portada
+*/
 
 /*
 📌 Estilos Portada
 */
 
 .portada {
-    height: 100vh;
+    height: 20vh;
     position: relative;
     color: #fff;
 }
 
 .bg-image {
+    background-image: url(../img/gradient.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -234,16 +359,26 @@ footer a {
 📌 Estilos About Me
 */
 
+.bg-card {
+    background: var(--card-bg);
+    background: var(--card-bg-gradient);
+    color: var(--text-color);
+    border-radius: 0 0 10px 10px;
+}
+
+.card-rounded {
+    border-radius: 0 0 50px 50px !important;
+}
+
 .profile-img img{
-    width: 300px;
-    padding: 0px;
+    margin-bottom: 20px;
     position: relative;
     top: 0px;
-    background: var(--gradient-animation);
-    background-size: var(--gradient-background-size);
-    -webkit-animation: AnimationName 21s ease infinite;
-    -moz-animation: AnimationName 21s ease infinite;
-    animation: AnimationName 21s ease infinite;
+    border: 5px solid rgba(240, 240, 240, 0);
+    background: linear-gradient(150deg, #ed3e92, #7967c7, #0391fd);
+    background-size: 800% 600%;
+    animation: gradientMoving 6s ease infinite;
+    box-shadow: var(--medium-shadow);
 }
 
 #about .card {
@@ -265,10 +400,6 @@ footer a {
 📌 Estilos Estudios
 */
 
-.bg-gray {
-    background-color: #fcfafb;
-}
-
 .cards-2 {
     padding-top: 5.5rem;
     padding-bottom: 2.25rem;
@@ -279,20 +410,24 @@ footer a {
     position: relative;
     margin-bottom: 5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--light-shadow);
 }
 
 .cards-2 .card .entity-img {
     position: absolute;
-    top: -15px;
+    top: -25px;
     right: 0;
     left: 0;
     width: 48px;
     margin-right: auto;
     margin-left: auto;
-
-    background-color: rgb(146, 127, 255);
     height: 50px;
+}
+
+.entity-img img {
+    width: 50px;
+    background-color: gray;
+    border-radius: 100%;
 }
 
 .cards-2 .card-body {
@@ -300,7 +435,16 @@ footer a {
 }
 
 .gradient-bottom {
-    background: linear-gradient(to right, #ef3d91, #0092ff);
+    background: linear-gradient(271deg, #ed3e92, #7967c7, #0391fd);
+    background-size: 600% 600%;
+    animation: gradientMoving 7s ease infinite;
+}
+
+/*animación gradient tarjetas estudios*/
+@keyframes gradientMoving {
+    0%{background-position:0% 45%}
+    50%{background-position:100% 56%}
+    100%{background-position:0% 45%}
 }
 
 .cards-2 .card .gradient-bottom {
@@ -314,8 +458,16 @@ footer a {
 }
 
 .heading {
-    margin-bottom: 3.75rem;
-    
+    margin-bottom: 4rem;
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    text-align: center;
+}
+
+.card-line p {
+    padding-top: 5px;
+    border-top: 1px rgba(246, 239, 239, 0.281) solid;
 }
 
 /*
@@ -330,13 +482,25 @@ footer a {
     position: relative;
 }
 
-#experience .img::before {
+.p-gray {
+    color: #5e6576; 
+}
+
+#experience .line::before {
     content: "";
     left: 50%;
     width: 4px;
     position: absolute;
     height: calc(100% + 140px);
-    background: wheat;
+    background: linear-gradient(181deg, #ed3e92, #7967c7, #0391fd);
+    background-size: 400% 500%;
+    animation: gradientMovingVertical 3s ease infinite;
+}
+
+@keyframes gradientMovingVertical {
+    0%{background-position:51% 0%}
+    50%{background-position:50% 100%}
+    100%{background-position:51% 0%}
 }
 
 /*
@@ -346,20 +510,24 @@ footer a {
 /*
 📌 Estilos Habilidades
 */
+.bg-design {
+    background: url(../img/portada-mb.jpg);
+    background-position: center right;
+    background-repeat: no-repeat;
+}
 
 .container-accordion {
     width: 100%;
-    max-width: 30rem;
+    max-width: 34.3rem;
     padding: 2rem;
-    margin: 3rem auto;
-    background: hsl(0, 0%, 14%);
-    border-radius: 1rem;
+    background: var(--card-bg);
+    background: var(--card-bg-gradient);
     border: 1px solid #222;
-    box-shadow: 0px 0px 34px -8px rgba(0, 0, 0, 0.55);
+    box-shadow: var(--shadows);
 }
 
 .accordion {
-    background-color: #333;
+    background-color: #1e2735;
     color: #eee;
     cursor: pointer;
     padding: 1rem;
@@ -376,13 +544,15 @@ footer a {
     border-radius: 1rem 1rem 0 0;
 }
 
-.accordion:nth-last-child(1) {
+.accordion:nth-last-child(2) {
     border-radius: 0 0 1rem 1rem;
 }
 
 .active,
 .accordion:hover {
-    background-color: #426ef0;
+    background: linear-gradient(120deg, #ed3e92, #7967c7, #0391fd);;
+    background-size: 200% 200%;
+    animation: gradientMoving 3s ease infinite;
 }
 
 .accordion:after {
@@ -415,15 +585,16 @@ footer a {
 */
 
 .cards-body {
-    background-color: rgb(141, 141, 141);
+    
 }
 
 .special-card {
     width: auto;
     height: 300px;
     position: relative;
-    background: #646464;
-    color: #252525;
+    background: var(--card-bg);
+    background: var(--card-bg-gradient);
+    color: var(--text-color);
     border-radius: 4px;
     overflow: hidden; /*mete los iconos en la card*/
     line-height: 150%;
@@ -440,13 +611,17 @@ footer a {
 
     /*imagen tarjeta, esta se superpone*/
 .special-card-img {
-    background: #00ff88;
-    background: linear-gradient(to top, #00ff88, #61efff);
+    background: #a0a0a0;
     height: 100%;
     width: 100%;
     position: absolute;
     transition: transform .3s ease-in-out;
     z-index: 2;
+}
+
+.special-card-img-inside {
+    height: 100%;
+    width: 100%;
 }
 
     /*botones de social media*/
@@ -493,7 +668,7 @@ footer a {
 
     /*hovers de special card*/
 .special-card:hover {
-    box-shadow: 0px 15px 30px rgba(80, 80, 80, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .special-card:hover .special-card-img {
@@ -527,11 +702,30 @@ footer a {
 
 .footer {
     position: relative;
-    padding-top: 7.5rem;
-    padding-bottom: 6rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-align: center;
 }
 
+.footer .overlay {
+    background-color: rgba(0, 0, 0, 0.211);
+    position: absolute;
+    top: 0;
+    left: 0px;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.footer p {
+    color: #0000005b;
+}
+
+#footer {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 150px;
+}
 
 
 /*
@@ -544,7 +738,7 @@ footer a {
 
 #btn-up {
     display: inline-block;
-    background-color: #414141;
+    background-color: #b6b6b6;
     width: 50px;
     height: 50px;
     text-align: center;
@@ -552,6 +746,7 @@ footer a {
     position: fixed;
     bottom: 30px;
     right: 30px;
+    border-radius: 20px;
     transition: background-color .3s, 
         opacity .5s, visibility .5s;
     opacity: 0;
@@ -566,16 +761,19 @@ footer a {
     font-style: normal;
     font-size: 2em;
     line-height: 50px;
-    color: #fff;
+    color: #fdfdfd;
 }
 
 #btn-up:hover {
     cursor: pointer;
-    background-color: #333;
+    background: linear-gradient(120deg, #ed3e92, #7967c7, #0391fd);;
+    background-size: 200% 200%;
+    animation: gradientMoving 3s ease infinite;
+
 }
 
 #btn-up:active {
-    background-color: #555;
+    background-color: #1c256c;
 }
 
 #btn-up.show {
